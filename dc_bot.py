@@ -2,7 +2,8 @@
 import discord
 from discord.ext import commands
 import LLMmodels
-from handel_regulations import all_string_game_regulations, history_game_regulations
+from handel_regulations import history_game_regulations
+# from handel_regulations import all_string_game_regulations
 import json
 import random
 
