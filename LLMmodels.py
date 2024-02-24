@@ -1,16 +1,19 @@
-import openai
 import google.generativeai as genai
-import random
 import json
 
-openai.api_base = "http://127.0.0.1:4891/v1"
-openai.api_key = "not needed for a local LLM"
+
+# if want to use local mistral LLM model,please remove those annotation
+# import random
+# import openai
+# openai.api_base = "http://127.0.0.1:4891/v1"
+# openai.api_key = "not needed for a local LLM"
 
 
 with open('setting.json', 'r', encoding='utf8') as jfile:
     Gemini_API_KEY = json.load(jfile)['Gemini_API_KEY']
 
 
+"""
 def mistral_completion(prompt):
     # choose model
     model = "mistral-7b-openorca.q4_0"
@@ -31,6 +34,7 @@ def mistral_completion(prompt):
     ).choices[random.randrange(text_amount)].text.split("\n", 1)[1]
 
     return response
+"""
 
 
 def gemini_chat(history, prompt):
