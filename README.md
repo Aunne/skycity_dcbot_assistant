@@ -17,6 +17,7 @@ choose a model you like to use
 
 # second, setting data
 In folder "skycity_regulation", write txt file to set for bot reading
+
 setting "setting.sample.json" file and rename to "setting.json"
 
 # done 
