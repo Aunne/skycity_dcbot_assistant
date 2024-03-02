@@ -1,17 +1,20 @@
 # discord needs
+import os
 import discord
 from discord.ext import commands
 import LLMmodels
-from handel_regulations import history_game_regulations
+from chat import chat_history
 # from handel_regulations import all_string_game_regulations
 import json
-import random
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 with open('setting.json', 'r', encoding='utf8') as jfile:
-    DC_BOT_TOKEN = json.load(jfile)['TOKEN']
+    DATA = json.load(jfile)
+    DC_BOT_TOKEN = DATA['TOKEN']
+    WHITE_CHANNELS = DATA['WHITE_CHANNELS']
+    WHITE_MEMBER = DATA['WHITE_MEMBER']
 
 
 @bot.event
@@ -36,33 +39,26 @@ async def Q(ctx, *, arg):
 
 @bot.command()
 async def Q(ctx, *, arg):
-    if ctx.channel.id in [1210695777169711187, 714725643765415958]:
-        order_number = str(random.uniform(0, 1))[2:7]
-        username = ctx.author.nick
-        await ctx.send(f'已接收到 ***{str(username)}***  的問題,我正在思考答案,您的問題編號是{order_number},請稍後！')
+    '''
+    question to bot
+    '''
+    if ctx.channel.id not in WHITE_CHANNELS:
+        return
+    await ctx.reply(f'已接收到您的問題,我正在思考答案,請稍後！')
 
-        history = history = [
-            {
-                "role": "user",
-                "parts": ['你現在是一個遊戲名叫天空之城的遊戲嚮導,你必須記住我告訴你的所有知識並根據以下我告訴你的知識回答接下來的問題。']
-            },
-            {
-                "role": "model",
-                "parts": ['好的,我會開始記住接下來你說的內容。']
-            },
-            *history_game_regulations(),
-            {
-                "role": "user",
-                "parts": ['現在請你回答以下的問題,開頭的回答請用"根據我所知道的知識",而不知道的問題請回答"我不知道"。']
-            },
-            {
-                "role": "model",
-                "parts": ['好的,請問問題是什麼?']
-            },
-        ]
-        ans = LLMmodels.gemini_chat(history, prompt=arg)
+    history = chat_history()
+    ans = LLMmodels.gemini_chat(history, prompt=arg)
 
-        await ctx.send(f'問題編號{order_number}的回答:\n{ans}')
+    await ctx.reply(ans)
+
+@bot.command()
+async def restart(ctx):
+    '''
+    restart bot
+    '''
+    if ctx.author.id not in WHITE_MEMBER:
+        return
+    os.system('supervisorctl restart skycity_dc_assistant_bot')
 
 
 bot.run(DC_BOT_TOKEN)
