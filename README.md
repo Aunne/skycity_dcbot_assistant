@@ -2,7 +2,7 @@
 download this project
 using python version 3.11
 
-# first,in venv cmd environment install those packge
+# first, install those packge
 pip install discord.py
 
 # seconcd, choose a model you like to use
