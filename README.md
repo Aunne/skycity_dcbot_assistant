@@ -6,9 +6,13 @@ using python version 3.11
 pip install discord.py
 
 choose a model you like to use
-**if you want to use local mistral model,then install this**
+**
+if you want to use local mistral model,then install this
+**
 ```pip install openai```
-**if you want to use google Gemini online LLM,then install this**
+**
+if you want to use google Gemini online LLM,then install this
+**
 ```pip install -q -U google-generativeai```
 
 # second, setting data
