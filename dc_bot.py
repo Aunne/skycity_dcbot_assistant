@@ -43,6 +43,7 @@ async def Q(ctx, *, arg):
     question to bot
     '''
     if ctx.channel.id not in WHITE_CHANNELS:
+    # if user not in specified channel uses that command,then not to do command
         return
     await ctx.reply(f'已接收到您的問題,我正在思考答案,請稍後！')
 
@@ -57,6 +58,7 @@ async def restart(ctx):
     restart bot
     '''
     if ctx.author.id not in WHITE_MEMBER:
+    # if user not in WHITE_MEMBER ,then not to do command
         return
     os.system('supervisorctl restart skycity_dc_assistant_bot')
 
