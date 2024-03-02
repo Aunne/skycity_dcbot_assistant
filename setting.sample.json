@@ -1,0 +1,10 @@
+{
+    "TOKEN": "your dc bot TOKEN",
+    "Gemini_API_KEY": "your Gemini_API_KEY",
+    "WHITE_CHANNELS": [
+        "your WHITE_CHANNELS id"
+    ],
+    "WHITE_MEMBER": [
+        "your WHITE_MEMBER id"
+    ]
+}
