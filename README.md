@@ -11,7 +11,9 @@ choose a model you like to use
 
 ```pip install openai```
 
-**if you want to use** ==google Gemini== **online LLM,then install this**
+**if you want to use**
+==google Gemini==
+**online LLM,then install this**
 
 ```pip install -q -U google-generativeai```
 
