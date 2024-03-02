@@ -6,5 +6,7 @@
     ],
     "WHITE_MEMBER": [
         "your WHITE_MEMBER id"
-    ]
+    ],
+    "ENABLE_WHITE_CHANNELS" : true,
+    "ENABLE_WHITE_MEMBERS" : true
 }

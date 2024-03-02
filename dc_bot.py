@@ -15,6 +15,8 @@ with open('setting.json', 'r', encoding='utf8') as jfile:
     DC_BOT_TOKEN = DATA['TOKEN']
     WHITE_CHANNELS = DATA['WHITE_CHANNELS']
     WHITE_MEMBER = DATA['WHITE_MEMBER']
+    ENABLE_WHITE_CHANNELS = DATA['ENABLE_WHITE_CHANNELS']
+    ENABLE_WHITE_MEMBERS = DATA['ENABLE_WHITE_MEMBERS']
 
 
 @bot.event
@@ -42,7 +44,7 @@ async def Q(ctx, *, arg):
     '''
     question to bot
     '''
-    if ctx.channel.id not in WHITE_CHANNELS:
+    if  ENABLE_WHITE_CHANNELS and (ctx.channel.id not in WHITE_CHANNELS):
     # if user not in specified channel uses that command,then not to do command
         return
     await ctx.reply(f'已接收到您的問題,我正在思考答案,請稍後！')
@@ -57,7 +59,7 @@ async def restart(ctx):
     '''
     restart bot
     '''
-    if ctx.author.id not in WHITE_MEMBER:
+    if ENABLE_WHITE_MEMBERS and (ctx.author.id not in WHITE_MEMBER):
     # if user not in WHITE_MEMBER ,then not to do command
         return
     os.system('supervisorctl restart skycity_dc_assistant_bot')
