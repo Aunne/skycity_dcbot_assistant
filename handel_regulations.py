@@ -26,7 +26,7 @@ def history_game_regulations():
     game_history = []
 
     for regulation_txt in regulation_list:
-        with open(dirPath+"/skycity_regulation/"+regulation_txt) as f:
+        with open(dirPath+"/skycity_regulation/"+regulation_txt, encoding='utf-8') as f:
             lines = f.readlines()
             for line in lines:
                 if line != "":
